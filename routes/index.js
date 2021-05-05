@@ -8,6 +8,9 @@ const moment =  require('moment');
 const mysqlConnection  = require('../db/database.js');
 const { checkToken } = require('../middleware.js');
 
+require('dotenv').config();
+
+
 //Creación del Token expira en 10 horas
 const createToken = (user) => {
   let payload = {
@@ -15,7 +18,7 @@ const createToken = (user) => {
     createdAt: moment().unix(),
     expiresAt: moment().add(10,'hours').unix()
   }
-  return jwt.encode(payload,"palabrasecreta");
+  return jwt.encode(payload,process.env.TOKEN_KEY);
 };
 
 router.post('/autenticacion', async function(req, res, next) {

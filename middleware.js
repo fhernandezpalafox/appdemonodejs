@@ -13,7 +13,7 @@ const checkToken = (req,res,next) => {
     const token =  req.headers['user_token'];
     let payload =  null;
     try {
-        payload  =  jwt.decode(token, "palabrasecreta")
+        payload  =  jwt.decode(token, process.env.TOKEN_KEY)
     } catch (error) {
         return res.json({
            error: 'Token Invalido',

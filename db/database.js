@@ -1,11 +1,12 @@
 var mysql =  require("mysql");
+require('dotenv').config();
 
 
 var pool = mysql.createPool({
-    host: 'us-cdbr-east-03.cleardb.com',
-    user: 'b4900007e06841',
-    password: 'dea9cb74',
-    database: 'heroku_9c613d96d271cbe',
+    host:  process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DATABASE
 });
 
 modeDevelopper  =  function(){
